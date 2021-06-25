@@ -2,9 +2,12 @@ import streamlit as st
 import datetime
 import requests
 from PIL import Image
+import pandas as pd
+
 
 image = Image.open("image/taxi.jpg")
 st.image(image, caption='Ride my cab', use_column_width=False)
+
 
 '''
 # Predict you taxi's fare in NYC
@@ -23,14 +26,24 @@ pu_lon = st.number_input("What's your pick up longitude?",
                          value = 40.7614327)
 
 pu_lat = st.number_input("What's your pick up latitude?",
-                         value = 73.9798156)
+                         value = -73.9798156)
 
 "## Where do you want to go?"
 do_lon = st.number_input("What's your drop-off longitude?",
-                         value = 50.6413111)
+                         value = 40.6413111)
 
 do_lat = st.number_input("What's your drop-off latitude?",
-                         value = 73.7803331)
+                         value = -73.7803331)
+
+
+data = pd.DataFrame({
+    'lon' : [pu_lat, do_lat],
+    'lat' : [pu_lon, do_lon]
+})
+
+if st.button('See my trip'):
+    st.map(data)
+
 
 "## Finally, how many passenger do you want to take on board?"
 passenger = st.number_input("Number of passenger",
