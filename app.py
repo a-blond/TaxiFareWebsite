@@ -4,7 +4,7 @@ import requests
 from PIL import Image
 
 image = Image.open("image/taxi.jpg")
-st.image(image, caption='Le Wagon', use_column_width=False)
+st.image(image, caption='Ride my cab', use_column_width=False)
 
 '''
 # Predict you taxi's fare in NYC
@@ -50,6 +50,7 @@ params={"pickup_datetime" : pu_datetime ,
 response = requests.get(url, params = params).json()
 
 answer = round(response["prediction"],2)
+
 "# Our prediction for your ride"
 if st.button('Get fare'):
     # print is visible in server output, not in the page
