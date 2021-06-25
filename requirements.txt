@@ -2,4 +2,3 @@ streamlit
 datetime
 requests
 pandas
-PIL
